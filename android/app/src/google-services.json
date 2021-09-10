@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "702635790307",
+    "project_id": "devamart-cb563",
+    "storage_bucket": "devamart-cb563.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702635790307:android:db72bfb72c49494af5dad6",
+        "android_client_info": {
+          "package_name": "com.devamart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702635790307-eigi4bnqshbk0vhj7ln4nn2ui4jn5ljk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMGOCYsmKpSI-rNedp5_lZdnidvWZUZJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702635790307-eigi4bnqshbk0vhj7ln4nn2ui4jn5ljk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

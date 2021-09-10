@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "84770721818",
+    "project_id": "ente-naadu",
+    "storage_bucket": "ente-naadu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84770721818:android:cae5b3848ea3ac182981a3",
+        "android_client_info": {
+          "package_name": "com.entenadu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84770721818-2a7vtr5slct13633u5ccb0sd6pon149f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWMDIxwT92liVwXTOvF_FhyR9gvyUHKj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84770721818-2a7vtr5slct13633u5ccb0sd6pon149f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

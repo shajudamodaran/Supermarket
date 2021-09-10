@@ -1,0 +1,14 @@
+com/devamart/MainApplication.java
+ com.devamart.MainApplication
+ com.devamart.MainApplication$1
+com/devamart/MainActivity.java
+ com.devamart.MainActivity
+com/devamart/BuildConfig.java
+ com.devamart.BuildConfig
+com/entenadu/ReactNativeFlipper.java
+ com.entenadu.ReactNativeFlipper
+ com.entenadu.ReactNativeFlipper$1
+ com.entenadu.ReactNativeFlipper$2
+ com.entenadu.ReactNativeFlipper$2$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
