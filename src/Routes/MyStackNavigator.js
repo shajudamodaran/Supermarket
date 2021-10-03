@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import Homepage from '../Pages/Homepage/Homepage';
 import HomeHeader from '../Components/Headers/HomeHeader';
-import MyCart from '../Pages/Other Pages/MyCart';
 import SimpleHeader from '../Components/Headers/SimpleHeader';
+import MyCart from '../Pages/Homepage/OtherPages/MyCart';
 const Stack = createStackNavigator();
 
 

@@ -4,11 +4,13 @@ import { FOOTER_ACCCOUNT_ICON, FOOTER_CART_ICON, FOOTER_HOME_ICON, FOOTER_ORDERS
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePageRedux } from '../../Redux/ActivePageSlice'
+import { useNavigation } from '@react-navigation/core'
 
 
 export default function FooterTab() {
 
     let dispatch=useDispatch()
+    const navigation=useNavigation()
 
     return (
         <View style={styles.container}>
@@ -16,8 +18,8 @@ export default function FooterTab() {
             <TouchableOpacity onPress={()=>{dispatch(setActivePageRedux("actualhome"))}} activeOpacity={.5}><FOOTER_HOME_ICON/></TouchableOpacity>
             <TouchableOpacity activeOpacity={.5}><FOOTER_ORDERS_ICON/></TouchableOpacity>
             <TouchableOpacity onPress={()=>{dispatch(setActivePageRedux("searchpage"))}} activeOpacity={.5}><FOOTER_SEARCH_ICON/></TouchableOpacity>
-            <TouchableOpacity onPress={()=>{dispatch(setActivePageRedux("mycart"))}} activeOpacity={.5}><FOOTER_CART_ICON/></TouchableOpacity>
-            <TouchableOpacity activeOpacity={.5}><FOOTER_ACCCOUNT_ICON/></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate('cart')}} activeOpacity={.5}><FOOTER_CART_ICON/></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{dispatch(setActivePageRedux("testpage"))}}  activeOpacity={.5}><FOOTER_ACCCOUNT_ICON/></TouchableOpacity>
         </View>
     )
 }

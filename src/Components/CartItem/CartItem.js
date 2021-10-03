@@ -1,41 +1,67 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
+import { GET_ITEM_DETAILS_BY_ID } from '../../Firebase/Functions/CartFirebaseFunctions';
 import CartRemoveButtobn from '../Cart Remove Button/CartRemoveButtobn'
 import IncreaseDecreaseButton from '../Increase Decrease Button/IncreaseDecreaseButton'
 
-export default function CartItem({data,id}) {
+export default function CartItem({ data }) {
 
-    console.log(id);
+    console.log(data);
+
+    let [productData, setProductData] = useState(null)
+
+
+    useEffect(() => {
+
+        //console.log("Id===>", data.data.product_Id);
+
+        GET_ITEM_DETAILS_BY_ID(data.data.product_Id).then((res) => {
+
+            //console.log("Product Data ==",res);
+            setProductData(res)
+
+        })
+
+    }, [])
 
 
     return (
-        <View style={styles.container}>
+        <>
+            {
+                productData !== null ?
 
-            <View style={styles.imageView}>
-                <Image source={data.image} style={styles.image} ></Image>
-            </View>
+                    <View style={styles.container}>
 
-            <View style={styles.detailsView}>
-                <Text style={{fontSize:14}}>7-Up Soft Drink - Lemon  2 ltr</Text>
-                <Text style={{fontSize:14,fontWeight:"bold",marginTop:5}}>₹ 70.00 </Text>
-                <Text style={{marginTop:5,fontSize:12,color:"green",fontWeight:"bold"}}>In stock</Text>
+                        <View style={styles.imageView}>
+                            <Image source={{ uri: productData != null ? productData.images[0] : null }} style={styles.image} ></Image>
+                        </View>
 
-                <View style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginTop:13
-                }}>
-                    <IncreaseDecreaseButton />
-                    <CartRemoveButtobn/>
-                   
-                </View>
+                        <View style={styles.detailsView}>
+                            <Text style={{ fontSize: 14 }}>{productData ? productData.name : ""}</Text>
+                            <Text style={{ fontSize: 14, fontWeight: "bold", marginTop: 5 }}>₹ {productData ? productData.mrp : ""} </Text>
+                            <Text style={{ marginTop: 5, fontSize: 12, color: productData ? productData.availability ? "green" : "Red" : "green", fontWeight: "bold" }}>{productData ? productData.availability ? "In stock" : "Out of stock" : null}</Text>
 
-            </View>
-        </View>
+                            <View style={{
+                                width: "100%",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                marginTop: 13
+                            }}>
+                                <IncreaseDecreaseButton initial={data.data.qty} id={data.id}/>
+                                <CartRemoveButtobn />
+
+                            </View>
+
+                        </View>
+                    </View>
+                    : console.log("product Data null")
+            }
+        </>
     )
+
+
 }
 
 const styles = StyleSheet.create({
@@ -48,8 +74,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        borderBottomWidth:.5,
-        borderBottomColor:"#949494",
+        borderBottomWidth: .5,
+        borderBottomColor: "#949494",
     },
     imageView: {
 
@@ -70,7 +96,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-       
+
     },
     image: {
 

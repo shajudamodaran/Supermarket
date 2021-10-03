@@ -1,20 +1,50 @@
-import React,{useState}  from 'react'
+import React,{useState,useEffect}  from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useDispatch } from 'react-redux';
+import { UPDATE_CART_QUANTITY } from '../../Firebase/Functions/CartFirebaseFunctions';
+import { refreshCart } from '../../Redux/CartSlice';
 
-export default function IncreaseDecreaseButton() {
+export default function IncreaseDecreaseButton({id,initial}) {
 
     let [count,setCount]=useState(1)
+    let dispatch = useDispatch()
+
+    useEffect(() => {
+
+        setCount(initial)
+        
+       
+    }, [])
 
     let handleCount=(para)=>{
 
         if(para=="add")
         {
-            setCount(count+1)
+            //console.log(id);
 
+           
+            UPDATE_CART_QUANTITY(id,count+1).then((res)=>{
+
+                dispatch(refreshCart())
+                setCount(count+1)
+                console.log(res);
+
+            })
+            
         }
         else
         {
-            count<=1?setCount(1):setCount(count-1)
+          
+
+            UPDATE_CART_QUANTITY(id,count-1<1?1:count-1).then((res)=>{
+
+                dispatch(refreshCart())
+                count<=1?setCount(1):setCount(count-1)
+                console.log(res);
+
+            })
+
+            
         }
 
     }

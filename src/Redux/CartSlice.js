@@ -1,30 +1,42 @@
 import React from "react"
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice ,createAsyncThunk} from "@reduxjs/toolkit"
+import { GET_CART_DATA } from "../Firebase/Functions/CartFirebaseFunctions";
 
-let image=require('../Assets/Images/sevenup.png')
+const getAllCartData = createAsyncThunk(
+    'users/fetchByIdStatus',
+    async () => {
+      const response = await GET_CART_DATA()
+      return response.data
+    }
+  )
 
 
 const cartSlice = createSlice({
     name: "usercart",
     initialState: {
-        cart: [{ name: "name1", price: "70", count: 1, image: image, id: "1000" },
-               { name: "name2", price: "60", count: 1, image: image, id: "1001" },
-              ]
+        cart: [],
+        cart_refresh_flag_redux: false
     },
     reducers: {
 
         addItemToCartRedux: (state, action) => {
-            let newArray=[...state.cart,action.payload]
-            state.cart = [...newArray]
+            //let newArray=[...state.cart,action.payload]
+            //state.cart = [...newArray]
+            console.log(action.payload);
         },
         removeItemFromCartRedux: (state, action) => {
             let newArray=[...state.cart]
             var filteredAry = ary.filter(function(e) { return e !== 'seven' })
         },
-
-    }
+        refreshCart: (state, action) => {
+            
+            state.cart_refresh_flag_redux=!state.cart_refresh_flag_redux
+        },
+        
+    },
 })
 
-export const { setActivePageRedux } = cartSlice.actions
+export const { setActivePageRedux,addItemToCartRedux,refreshCart } = cartSlice.actions
 
 export default cartSlice.reducer
+

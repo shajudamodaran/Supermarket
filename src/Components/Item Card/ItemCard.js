@@ -1,27 +1,31 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { StyleSheet, View,Image } from 'react-native'
 import { HEART_SMALL_OUTLINE } from '../../Assets/Call Asset/CallAsset'
 import AddTocartButton from '../Add  to cart Button/AddTocartButton'
 import { Text} from "native-base"
+import { CHECK_AVAILABILITY_IN_CART } from '../../Firebase/Functions/CartFirebaseFunctions'
 
 
-export default function ItemCard() {
+export default function ItemCard({obj}) {
 
     let [count,setCount]=useState(0)
+    console.log(obj);
+
+
 
     return (
         <View style={styles.container}>
             <View style={styles.toprow}>
-                <AddTocartButton/>
+                <AddTocartButton id={obj.data.Id}/>
                 <HEART_SMALL_OUTLINE/>
             </View>
 
-            <Image style={styles.imageView} source={require('../../Assets/Images/ginger.png')} />
+            <Image style={styles.imageView} source={{uri:obj.data.images[0]}} />
 
-            <Text fontSize="xs" >Ginger</Text>
+            <Text fontSize="xs" >{obj.data.name}</Text>
             <View style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
-            <Text  fontSize="sm" bold>Rs :50/-</Text>
-            <Text fontSize="xs">(for 50 grams)</Text>
+            <Text  fontSize="sm" bold>Rs :{obj.data.mrp}/-</Text>
+            <Text fontSize="xs">(for {obj.data.qty} {obj.data.unit})</Text>
             </View>
         </View>
     )
@@ -51,8 +55,10 @@ const styles = StyleSheet.create({
     },
     imageView:{
 
+        width:70,height:100,
         marginTop:15,
         width:"100%",
+        maxHeight:'50%',
         resizeMode:"contain"
 
     }

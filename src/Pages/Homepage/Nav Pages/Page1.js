@@ -8,6 +8,8 @@ import SearchPage from '../OtherPages/SearchPage'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActivePageRedux } from '../../../Redux/ActivePageSlice'
 import AllCategories from '../OtherPages/AllCategories'
+import Testpage from '../../DummyPage/Testpage'
+import MyCart from '../OtherPages/MyCart'
 
 
 
@@ -26,18 +28,20 @@ export default function Page1() {
 
             <View style={styles.container}>
 
-                <ScrollView style={styles.scrollView}>
+              
 
                    
                       {
                           activepageFromRedux==="actualhome"?<ActualHomePage/>:
                            activepageFromRedux==="searchpage"?<SearchPage/>:
                            activepageFromRedux==="allcategories"?<AllCategories/>:
-                           activepageFromRedux==="mycart"?null:null
+                           activepageFromRedux==="mycart"?<MyCart/>:
+                           activepageFromRedux==="testpage"?<Testpage/>:null
+                          
                       }
                     
 
-                </ScrollView>
+                
             </View>
             <FooterTab />
 
@@ -54,9 +58,6 @@ const styles = StyleSheet.create({
 
 
     },
-    scrollView: {
-        backgroundColor: 'white',
-
-    },
+   
 
 });
